@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="root-container">
+        <div class="header">
+            <button id="reverse"> 
+                REVERSE
+            </button>
+            <button id="remove-symbols-numbers"> 
+                REMOVE SYMBOLS & NUMBERS
+            </button>
+            <button id="sort-alphabetically"> 
+                SORT ALPHABETICALLLY
+            </button>
+            <button id="toggle-color"> 
+                TOGGLE COLOR
+            </button>
+            <button id="random-color"> 
+                RANDOM COLOR
+            </button>
+            <button id="convert-to-inline">
+                CONVERT TO INLINE
+            </button>
+        </div>
+        <div class="main">
+            <div class="startups-container">
+
+            </div>
+
+        </div>
+        <div class="footer">
+
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<style>
+    .root-container {
+        position: relative;
+    }
+
+    .root-container .header {
+        position: relative;
+    }
+
+    .root-container .main {
+        position: relative;
+    }
+
+    .root-container .footer {
+        position: relative;
+    }
+
+    .startups-container {
+        background-color: gray;
+    }
+
+    .red {
+        background-image: red;
+    }
+
+    .blue {
+        background-image: blue;
+    }
+
+    .gold {
+        background-image: gold;
+    }
+</style>
+
+<script>
+    var colors = ['red', 'blue', 'gold'];
+    var chicagoStartupsHTML = [];
+    var chicagoStartups = [
+        '  Interior   Define  ',
+        'Classkick',
+        'teaBOT  .$',
+        'Pritzker Group Venture Capital',
+        'Teln!yx !!',
+        'ShipBob ~~$$$',
+        'Hologram',
+        'Tovala    ',
+        '    MANOR',
+        'ShuttleCloud 999987',
+        'gtrot @@@@@',
+        'DealsGoRound ****',
+        ' Groovebug',
+        'Stage$$$Bloc',
+        'Shiftgig',
+        'ParkWhiz'
+    ];
+    $(document).ready(function () {
+        $.each(chicagoStartups, function (index, startupName) {
+            chicagoStartupsHTML.push('<div>' + startupName + '</div>');
+        });
+        $(".startups-container").html(chicagoStartupsHTML.join(""));
+    });
+
+    document.getElementById("reverse").onclick = function() {reverse()};
+    document.getElementById("remove-symbols-numbers").onclick = function() {removeSymbolsNumbers()};
+    document.getElementById("sort-alphabetically").onclick = function() {sortAlphabetically()};
+    document.getElementById("toggle-color").onclick = function() {toggleColor()};
+    document.getElementById("random-color").onclick = function() {randomColor()};
+    document.getElementById("convert-to-inline").onclick = function() {convertToInline()};
+
+
+
+    function reverse() {
+        $(".startups-container").html(chicagoStartupsHTML.reverse().join(""));
+    }
+
+    function removeSymbolsNumbers() {
+        for(i = 0; i < chicagoStartupsHTML.length; i++) {
+            // Remove excess spaces
+            chicagoStartupsHTML[i] = chicagoStartupsHTML[i].replace(/\s+/g, " ");
+            // Remove symbols and numbers
+            chicagoStartupsHTML[i] = chicagoStartupsHTML[i].replace(/[^A-Z</>\s]+/ig, "");
+            // Trim
+            chicagoStartupsHTML[i] = chicagoStartupsHTML[i].replace(/^<div>\s+/g, '<div>');
+            chicagoStartupsHTML[i] = chicagoStartupsHTML[i].replace(/\s+<\/div>/g, '</div>');
+            chicagoStartupsHTML[i] = chicagoStartupsHTML[i].replace(/^<span>\s+/g, '<span>');
+            chicagoStartupsHTML[i] = chicagoStartupsHTML[i].replace(/\s+<\/span>/g, '</span>');
+        }
+        $(".startups-container").html(chicagoStartupsHTML.join(""));
+    }
+
+    function sortAlphabetically() {
+        $(".startups-container").html(chicagoStartupsHTML.sort().join(""));
+    }
+
+    function toggleColor () {
+        var startupsContainer = document.getElementsByClassName('startups-container');
+        console.log(startupsContainer[0].style.backgroundColor)
+        if(startupsContainer[0].style.backgroundColor == 'gray' || 
+           startupsContainer[0].style.backgroundColor == '' ) {
+            startupsContainer[0].style.backgroundColor = colors[0];
+        } else {
+            startupsContainer[0].style.backgroundColor = 'gray';
+        }
+    }
+
+    function randomColor () {
+        var index = Math.floor(Math.random() * colors.length);
+        var startupsContainer = document.getElementsByClassName('startups-container');
+        startupsContainer[0].style.backgroundColor = colors[index];
+    }
+
+    function convertToInline () {
+        for(i = 0; i < chicagoStartupsHTML.length; i++) {
+            chicagoStartupsHTML[i] = chicagoStartupsHTML[i].replace(/div/g, 'span');
+        }
+        $(".startups-container").html(chicagoStartupsHTML.sort().join(""));
+    }
+
+
+    //HOMEWORK 1 PROBLEMS START
+    // 1.CREATE A FUNCTION THAT REVERSES THE LIST OF STARTUPS ON CLICK OF THE REVERSE BUTTON
+    // 2.CREATE A FUNCTION THAT REMOVES ALL SYMBOLS AND NUMBERS FROM COMPANY NAMES ON CLICK OF REMOVE SYMBOLS & NUMBERS BUTTON 
+    //   Stage$$$Bloc => StageBloc
+    // 3.CREATE A FUNCTION THAT SORTS STARTUPS IN ALPHABETICAL ORDER ON CLICK OF THE SORT BUTTON
+    // 4.CREATE A FUNCTION THAT TOGGLES THE BACKGROUND COLOR UPON CLICK OF THE TOGGLE COLOR BUTTON
+    // 5.CREATE A FUNCTION THAT RANDOMLY SELECTS A COLOR CLASS AND APPLIES IT TO EACH COMPANY NAME WHEN THE COLOR BUTTON IS CLICKED
+    // 6.CREATE A FUNCTION THAT DISPLAYS STARTS AS INLINE ELEMENTS ON CLICK OF CONVERT TO INLINE BUTTON
+    //HOMEWORK 1 PROBLEMS END
+
+</script>
