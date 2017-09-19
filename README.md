@@ -1,13 +1,15 @@
 # homework-1
 Jonathan Wilkison
-GITHUB URL
+https://github.com/jwilkis2/homework-1
 9/17/2017
 CSC 436
 Homework: #1
 Complexity: 7
 Hours Invested: 5
 Expected grade: A
-Participation Source URL: https://github.com/jwilkis2/angular-reddit
+Participation:
+Working with Arrays: https://github.com/jwilkis2/angular-hello-world
+Reddit App: https://github.com/jwilkis2/angular-reddit
 
 Application Intent:
 - Application displays a list of start ups.  Can modify the list using the provided buttons

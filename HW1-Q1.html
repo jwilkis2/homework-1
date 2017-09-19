@@ -98,12 +98,11 @@
         'Shiftgig',
         'ParkWhiz'
     ];
-    $(document).ready(function () {
-        $.each(chicagoStartups, function (index, startupName) {
-            chicagoStartupsHTML.push('<div>' + startupName + '</div>');
-        });
-        $(".startups-container").html(chicagoStartupsHTML.join(""));
-    });
+    var startupsContainer = document.getElementsByClassName("startups-container")[0];
+    for(i = 0; i < chicagoStartups.length; i++) {
+        chicagoStartupsHTML.push('<div>' + chicagoStartups[i] + '</div>');
+    }
+    startupsContainer.innerHTML = chicagoStartupsHTML.join("");
 
     document.getElementById("reverse").onclick = function() {reverse()};
     document.getElementById("remove-symbols-numbers").onclick = function() {removeSymbolsNumbers()};
@@ -115,7 +114,7 @@
 
 
     function reverse() {
-        $(".startups-container").html(chicagoStartupsHTML.reverse().join(""));
+        startupsContainer.innerHTML = chicagoStartupsHTML.reverse().join("");
     }
 
     function removeSymbolsNumbers() {
@@ -130,11 +129,11 @@
             chicagoStartupsHTML[i] = chicagoStartupsHTML[i].replace(/^<span>\s+/g, '<span>');
             chicagoStartupsHTML[i] = chicagoStartupsHTML[i].replace(/\s+<\/span>/g, '</span>');
         }
-        $(".startups-container").html(chicagoStartupsHTML.join(""));
+        startupsContainer.innerHTML = chicagoStartupsHTML.join("");
     }
 
     function sortAlphabetically() {
-        $(".startups-container").html(chicagoStartupsHTML.sort().join(""));
+        startupsContainer.innerHTML = chicagoStartupsHTML.sort().join("");
     }
 
     function toggleColor () {
@@ -157,7 +156,7 @@
         for(i = 0; i < chicagoStartupsHTML.length; i++) {
             chicagoStartupsHTML[i] = chicagoStartupsHTML[i].replace(/div/g, 'span');
         }
-        $(".startups-container").html(chicagoStartupsHTML.sort().join(""));
+        startupsContainer.innerHTML = chicagoStartupsHTML.join("");
     }
 
 
